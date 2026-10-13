@@ -10,6 +10,7 @@
 #   Without it the base is origin/HEAD, then origin/main, then origin/master.
 #   origin/HEAD is the remote's default branch, not necessarily the branch PRs
 #   merge into; pass -b when they differ.
+#   PSTACK_TRANSCRIPTS_ROOT overrides the transcripts root (~/.claude/projects).
 set -u
 
 base=""
@@ -52,9 +53,19 @@ prs=$(mktemp)
 gh pr list --author "@me" --state all --limit 1000 \
 	--json number,state,headRefName 2>/dev/null > "$prs" || echo "[]" > "$prs"
 
-# Transcripts dir: ~/.cursor/projects/<slugified-repo-path>/agent-transcripts.
-slug=$(printf '%s' "$main_wt" | sed 's#^/##; s#/#-#g')
-transcripts="$HOME/.cursor/projects/$slug/agent-transcripts"
+# Transcripts: ~/.claude/projects/<project>/<session-id>.jsonl, subagents under
+# <session-id>/subagents/. <project> is the session's cwd with every
+# non-alphanumeric char replaced by "-", cut to 200 chars plus a hash suffix
+# when longer. A session runs from the main repo or from any worktree, so the
+# repo's chats span the project dirs of every worktree path.
+root="${PSTACK_TRANSCRIPTS_ROOT:-$HOME/.claude/projects}"
+transcripts=$(git worktree list --porcelain | awk '/^worktree /{print $2}' | while read -r p; do
+	s=$(printf '%s' "$p" | sed 's/[^A-Za-z0-9]/-/g')
+	[ ${#s} -gt 200 ] && s="${s:0:200}-*"
+	for d in "$root"/$s; do [ -d "$d" ] && printf '%s\n' "$d"; done
+done | sort -u)
+# Claude Code's own rg is a shell function that scripts do not inherit.
+if command -v rg >/dev/null 2>&1; then search=(rg -l -g '*.jsonl'); else search=(grep -rlE --include='*.jsonl'); fi
 now=$(date +%s)
 
 echo "# base: $base"
@@ -94,8 +105,9 @@ git worktree list --porcelain | awk '/^worktree /{print $2}' | while read -r wt;
 	# Most recent chat whose transcript operated in this worktree. Match path
 	# followed by "/" or a quote so glint-482 does not match glint-482-r37.
 	last="-"; last_ts=0
-	if [ -d "$transcripts" ]; then
-		f=$(rg -l -e "${wt}/" -e "${wt}\"" "$transcripts" 2>/dev/null \
+	if [ -n "$transcripts" ]; then
+		f=$(printf '%s\n' "$transcripts" | tr '\n' '\0' \
+			| xargs -0 "${search[@]}" -e "${wt}/" -e "${wt}\"" 2>/dev/null \
 			| xargs stat -f '%m %N' 2>/dev/null | sort -rn | head -1)
 		if [ -n "$f" ]; then last_ts=$(echo "$f" | awk '{print $1}')
 			last=$(date -r "$last_ts" '+%Y-%m-%d' 2>/dev/null); fi
