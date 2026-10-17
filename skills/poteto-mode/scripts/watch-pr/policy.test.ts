@@ -1,4 +1,4 @@
-import { describe, expect, it } from "bun:test";
+import { describe, expect, it } from "../expect.test-helper.ts";
 import { WatcherQueryError } from "./github.ts";
 import {
   applyQueueSnapshot,

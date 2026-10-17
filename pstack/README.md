@@ -22,7 +22,7 @@ the top-level directories of this repo mirror `~/.claude/`. from the repo root, 
 cp -R skills agents output-styles pstack ~/.claude/
 ```
 
-then start a new Claude Code session so it loads the skills, agents, and output style. the poteto-mode scripts (`orch`, `watch-pr`) need `bun`. nothing else needs it.
+then start a new Claude Code session so it loads the skills, agents, and output style. the poteto-mode scripts (`orch`, `watch-pr`) need Node.js 22.18 or later. nothing else needs it.
 
 ## get started
 

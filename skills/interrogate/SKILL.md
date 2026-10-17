@@ -28,7 +28,7 @@ Launch all reviewers in a single message with the Agent tool, one per entry on t
 
 | Subagent | Default `model` | Default `effort` |
 |----------|-----------------|------------------|
-| Reviewer A | `fable` | `xhigh` |
+| Reviewer A | `fable` | `high` |
 | Reviewer B | `opus` | `xhigh` |
 
 Each reviewer gets `subagent_type: "pstack-readonly"`, and `model` and `effort` set from its configured entry, or its table default when there is no configured line. Omit both for an `inherit` entry, so that reviewer runs on the parent session's model.

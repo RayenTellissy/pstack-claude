@@ -3,14 +3,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "bun test orch watch-pr check-plan.test.ts",
+    "test": "node --test \"orch/*.test.ts\" \"watch-pr/*.test.ts\" check-plan.test.ts",
     "typecheck": "tsc --project watch-pr/tsconfig.json --noEmit --strict"
   },
   "dependencies": {
     "commander": "14.0.0"
   },
   "devDependencies": {
-    "bun-types": "latest",
+    "@types/node": "^22",
     "typescript": "latest"
   }
 }

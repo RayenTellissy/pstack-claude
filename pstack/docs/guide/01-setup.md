@@ -10,7 +10,7 @@ The repository's top-level directories mirror `~/.claude/`. From the repository 
 cp -R skills agents output-styles pstack ~/.claude/
 ```
 
-Then start a new Claude Code session, so it loads the new skills, agents, and output style. The poteto-mode scripts (`orch`, `watch-pr`) need `bun`. Nothing else needs it.
+Then start a new Claude Code session, so it loads the new skills, agents, and output style. The poteto-mode scripts (`orch`, `watch-pr`) need Node.js 22.18 or later. Nothing else needs it.
 
 ## Pick your models
 
@@ -22,7 +22,7 @@ Run:
 
 [`/setup-pstack`](../../../skills/setup-pstack/SKILL.md) asks for a reasoning budget, shows you each role (code delegates, judgment, the review panels) with its model and effort, and asks what you want. pstack runs on two models, `fable` and `opus`. Answer the questions. It writes `~/.claude/pstack/models.md`, a small model config that pstack skills read each time they pick a model.
 
-The defaults run at `xhigh` effort, except the code-writing roles at `high`. That is the `large` budget. `unlimited` lifts every role to `max`. `medium` and `small` lower the effort and spend fewer tokens.
+The defaults run Fable at `high` effort, Opus at `high` for code-writing roles, and Opus at `xhigh` for the rest. That is the `large` budget. `unlimited` lifts every role to `max`. `medium` and `small` lower the effort and spend fewer tokens.
 
 You only override what you care about. A role with no line in the model config keeps the skill's default. To restore a default, delete that role's line. A rerun of `/setup-pstack` keeps any role whose model differs from the default. When a default changes, a config written before the change still pins the old default, so delete those role lines, or delete the file, then run `/setup-pstack` again.
 

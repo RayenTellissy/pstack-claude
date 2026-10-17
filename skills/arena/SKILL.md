@@ -16,7 +16,7 @@ Every candidate gets the same prompt, so the prompt is the contract.
 
 1. State the artifact each candidate is producing.
 2. Derive the rubric, 3-6 concrete gradeable criteria for what success looks like on *this* task. It is the picker's tool in Phase D. Candidates only see the task.
-3. Pick the runners. Use the `arena runners` line in `~/.claude/pstack/models.md`. If the file or that line is missing, default to one each on `fable xhigh` and `opus xhigh`. Pass each entry's model and effort as the Agent call's `model` and `effort`. An `inherit` entry in this line or the cross-judge line means the parent session's model, so omit `model` and `effort` for it. If an entry names a model other than `fable`, `opus`, or `inherit`, run that seat on `fable xhigh` and say so. Spawn more runners when the arena covers multiple design directions. Use the same model N times when the work is generation-bound rather than judgment-sensitive.
+3. Pick the runners. Use the `arena runners` line in `~/.claude/pstack/models.md`. If the file or that line is missing, default to one each on `fable high` and `opus xhigh`. Pass each entry's model and effort as the Agent call's `model` and `effort`. An `inherit` entry in this line or the cross-judge line means the parent session's model, so omit `model` and `effort` for it. If an entry names a model other than `fable`, `opus`, or `inherit`, run that seat on `fable high` and say so. Spawn more runners when the arena covers multiple design directions. Use the same model N times when the work is generation-bound rather than judgment-sensitive.
 4. Give each candidate its own output location (a git worktree where possible, otherwise `/tmp/arena-<slug>/candidate-<n>/`), per the **separate-before-serializing-shared-state** principle skill. A worktree starts from the repo's default branch, not the current one, so a worktree candidate's brief names your HEAD SHA (`git rev-parse HEAD`) and tells it to run `git checkout --detach <sha>` in its worktree first.
 
 ## Phase B: Fan out
@@ -27,7 +27,7 @@ If a candidate produces no output, proceed with N-1 and note the dropout.
 
 ## Phase C: Cross-judge
 
-After all Phase B candidates complete, choose one entry from the `arena cross-judge pool` line in `~/.claude/pstack/models.md`. If the file or that line is missing, choose from `fable xhigh` and `opus xhigh`. Prefer a model that differs from the parent's. Spawn one judge subagent with `subagent_type: "pstack-readonly"` on that entry's `model` and `effort`. It sees the rubric and the candidates by path label, scores each criterion, and recommends a base with rationale. It runs in parallel with your reading in Phase D. Don't spawn it while candidates are still writing.
+After all Phase B candidates complete, choose one entry from the `arena cross-judge pool` line in `~/.claude/pstack/models.md`. If the file or that line is missing, choose from `fable high` and `opus xhigh`. Prefer a model that differs from the parent's. Spawn one judge subagent with `subagent_type: "pstack-readonly"` on that entry's `model` and `effort`. It sees the rubric and the candidates by path label, scores each criterion, and recommends a base with rationale. It runs in parallel with your reading in Phase D. Don't spawn it while candidates are still writing.
 
 ## Phase D: Pick a base
 

@@ -14,7 +14,7 @@ cp -R skills agents output-styles pstack ~/.claude/
 
 Start a new Claude Code session, then run `/setup-pstack` to pick a reasoning budget, or skip it to keep the defaults. Use `/poteto-mode` at the start of any task that needs rigor. To keep it on every turn, run `/output-style poteto-mode`.
 
-The poteto-mode scripts (`orch`, `watch-pr`) need [bun](https://bun.sh).
+The poteto-mode scripts (`orch`, `watch-pr`) need [Node.js](https://nodejs.org) 22.18 or later.
 
 ## What changed from upstream
 
