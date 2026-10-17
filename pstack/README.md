@@ -251,7 +251,7 @@ a few things `poteto-mode` references but doesn't bundle:
 
 - `/simplify` is a Claude Code built-in. `poteto-mode` runs it on the diff before each commit.
 - driving browser, Electron, and web UIs needs a browser automation tool (Claude in Chrome, the built-in browser, a Playwright MCP, or the **playwright-cli** skill).
-- CLIs and TUIs need only Bash, with `tmux` for interactive TUIs.
+- CLIs and TUIs need only Bash, with a PTY driven by `expect` or `script` (both ship with macOS) for interactive TUIs, or `tmux` when it's installed.
 - authoring a skill uses the **skill-creator** skill when it's installed. otherwise it follows [Claude Code's skills docs](https://code.claude.com/docs/en/skills).
 
 ## why are there no planning skills?

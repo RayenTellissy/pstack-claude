@@ -6,6 +6,8 @@ disable-model-invocation: true
 
 # No comments
 
+Other pstack skills named here are files, not Skill tool calls, and the Skill tool refuses them. To run or apply one, Read `~/.claude/skills/<name>/SKILL.md` in full, or `~/.claude/skills/principle-<name>/SKILL.md` for a principle.
+
 Spawn Comment Sicko. Act on accepted findings.
 
 Defer to Comment Sicko's fresh perspective.

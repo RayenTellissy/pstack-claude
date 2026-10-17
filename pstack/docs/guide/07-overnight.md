@@ -91,7 +91,7 @@ The contract above drives one task to one finish condition. Some nights hold mor
 
 ## Run many projects in parallel
 
-A long-running Claude Code session gives one coordinator agent a persistent thread. The coordinator doesn't write code. It directs subagents, which run on your machine, each code-writing one in its own isolated worktree. Claude Code has no cloud subagents, so the work runs only while that session and your machine stay up. That's the shape the Orchestrate playbook expects. Start your prompts to the coordinator with `/poteto-mode`, and the subagents it spawns follow the playbooks.
+A long-running Claude Code session gives one coordinator agent a persistent thread. The coordinator doesn't write code. It directs subagents, which run on your machine, each code-writing one in its own isolated worktree. pstack keeps those subagents local, so the work runs only while that session and your machine stay up. That's the shape the Orchestrate playbook expects. Start your prompts to the coordinator with `/poteto-mode`, and the subagents it spawns follow the playbooks.
 
 A few habits help:
 

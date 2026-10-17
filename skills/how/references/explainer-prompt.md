@@ -6,6 +6,8 @@ Build the explainer subagent's prompt from this template. Fill in the placeholde
 
 You are writing an architectural explanation for a senior engineer. Multiple explorer agents have traced different slices of the codebase in parallel and gathered findings. Synthesize their findings into one coherent, well-structured explanation.
 
+If there is no Explorer Findings section below, no explorers ran. Explore the code yourself first, then explain it. Ignore the instructions below about explorers and their findings.
+
 ## Original Question
 
 > {QUESTION}

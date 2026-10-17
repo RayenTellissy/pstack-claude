@@ -27,9 +27,9 @@ Open a task list (`TaskCreate` and `TaskUpdate`, or `TodoWrite` where that is th
 
 ## Phase B: Fan out
 
-Spawn all N workers in one message with `subagent_type: "general-purpose"`, `isolation: "worktree"`, `run_in_background: true`, and the step 4 `model` and `effort`, left unset for `inherit`. Omit `isolation` only when the worker needs the user's own checkout, such as its uncommitted changes or a process running from it. Claude Code has no cloud subagents, so every worker runs on this machine.
+Spawn all N workers in one message with `subagent_type: "general-purpose"`, `isolation: "worktree"`, `run_in_background: true`, and the step 4 `model` and `effort`, left unset for `inherit`. Omit `isolation` only when the worker needs the user's own checkout, such as its uncommitted changes or a process running from it. Never use `isolation: "remote"`. Workers stay local so they can reach local files. Outside a git repo, omit `isolation` and give each worker its own output directory.
 
-When a worker must start from a branch other than the current one, its brief names that branch and tells it to run `git checkout --detach <branch>` in its worktree first.
+A worktree starts from the repo's default branch, not the current one. So every brief names the exact commit to start from, the current HEAD SHA (`git rev-parse HEAD`) unless the worker needs another, and tells the worker to run `git checkout --detach <sha>` in its worktree first. Setting `worktree.baseRef` to `"head"` in Claude Code settings makes worktrees start from HEAD instead.
 
 Every brief stands alone. Include the goal, scope, exact slice or race arm, how to verify, and what to report. Reports use `PASS`, `ISSUES`, or `BLOCKED` with evidence. A worker that can prove a defect reports `ISSUES` and lists every issue it can prove, not only the first.
 

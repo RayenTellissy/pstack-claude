@@ -1,8 +1,8 @@
 # Architect runner prompt
 
-The orchestrator passes this file through to every parallel candidate runner during Phase B and fills in the variable inputs around it: the task, the Phase A grounding artifacts, the isolated working directory, and the path to write outputs. The working directory is a git worktree when available, otherwise a per-runner subdirectory under the sketch dir. What matters is independence between candidates.
+The orchestrator passes this file through to every parallel candidate runner during Phase B and fills in the variable inputs around it: the task, the Phase A grounding artifacts, the isolated working directory, and the path to write outputs. The working directory is a git worktree checked out at the orchestrator's HEAD SHA when available, otherwise arena's fallback, `/tmp/arena-<slug>/candidate-<n>/`. What matters is independence between candidates.
 
-You are producing one candidate design in architect's parallel exploration. Read the **architect** skill in full first. That's the workflow you're inside. Output a candidate design package: type sketch, function signatures, module map, and prose rationale shaped per [`rationale-template.md`](rationale-template.md).
+You are producing one candidate design in architect's parallel exploration. Read the architect skill in full first (`~/.claude/skills/architect/SKILL.md`). That's the workflow you're inside. Output a candidate design package: type sketch, function signatures, module map, and prose rationale shaped per `~/.claude/skills/architect/references/rationale-template.md`. Each principle skill named below is at `~/.claude/skills/principle-<name>/SKILL.md`.
 
 Apply the following discipline. The orchestrator compares candidates on these axes to pick a base.
 

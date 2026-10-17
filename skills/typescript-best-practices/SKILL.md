@@ -7,6 +7,8 @@ disable-model-invocation: true
 
 # TypeScript best practices
 
+Other pstack skills named here are files, not Skill tool calls, and the Skill tool refuses them. To run or apply one, Read `~/.claude/skills/<name>/SKILL.md` in full, or `~/.claude/skills/principle-<name>/SKILL.md` for a principle.
+
 Apply the **type-system-discipline** principle skill first.
 
 | Rule | Summary |

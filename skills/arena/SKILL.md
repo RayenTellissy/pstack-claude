@@ -6,6 +6,8 @@ disable-model-invocation: true
 
 # Arena
 
+Other pstack skills named here are files, not Skill tool calls, and the Skill tool refuses them. To run or apply one, Read `~/.claude/skills/<name>/SKILL.md` in full, or `~/.claude/skills/principle-<name>/SKILL.md` for a principle.
+
 Open a task list (`TaskCreate` and `TaskUpdate`, or `TodoWrite` where that is the todo tool) with one entry per phase (Frame, Fan out, Cross-judge, Pick, Graft, Verify) before launching anything.
 
 ## Phase A: Frame
@@ -15,7 +17,7 @@ Every candidate gets the same prompt, so the prompt is the contract.
 1. State the artifact each candidate is producing.
 2. Derive the rubric, 3-6 concrete gradeable criteria for what success looks like on *this* task. It is the picker's tool in Phase D. Candidates only see the task.
 3. Pick the runners. Use the `arena runners` line in `~/.claude/pstack/models.md`. If the file or that line is missing, default to one each on `fable xhigh` and `opus xhigh`. Pass each entry's model and effort as the Agent call's `model` and `effort`. An `inherit` entry in this line or the cross-judge line means the parent session's model, so omit `model` and `effort` for it. If an entry names a model other than `fable`, `opus`, or `inherit`, run that seat on `fable xhigh` and say so. Spawn more runners when the arena covers multiple design directions. Use the same model N times when the work is generation-bound rather than judgment-sensitive.
-4. Give each candidate its own output location (a git worktree where possible, otherwise `/tmp/arena-<slug>/candidate-<n>/`), per the **separate-before-serializing-shared-state** principle skill.
+4. Give each candidate its own output location (a git worktree where possible, otherwise `/tmp/arena-<slug>/candidate-<n>/`), per the **separate-before-serializing-shared-state** principle skill. A worktree starts from the repo's default branch, not the current one, so a worktree candidate's brief names your HEAD SHA (`git rev-parse HEAD`) and tells it to run `git checkout --detach <sha>` in its worktree first.
 
 ## Phase B: Fan out
 

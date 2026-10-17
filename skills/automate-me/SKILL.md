@@ -6,6 +6,8 @@ disable-model-invocation: true
 
 # Automate me
 
+Other pstack skills named here are files, not Skill tool calls, and the Skill tool refuses them. To run or apply one, Read `~/.claude/skills/<name>/SKILL.md` in full, or `~/.claude/skills/principle-<name>/SKILL.md` for a principle.
+
 A guided flow for turning the user's working conventions into a skill agents will follow. The output is one `-mode` skill tailored to them (e.g. `jay-mode`, `priya-mode`).
 
 This skill orchestrates three others: an inline mining pass (see step 1), the **skill-creator** skill (authoring), and the **unslop** skill (prose discipline). It sequences them. It doesn't replace them.
@@ -20,13 +22,13 @@ Look recursively for `.claude/skills/**/*-mode/SKILL.md` and `~/.claude/skills/*
 - Start fresh (rare, ask why before doing it)
 
 Update mode changes the rest of the flow:
-- Step 1 mines only history since the skill was last edited (`git log -1 --format=%cI <path>`).
+- Step 1 mines only history since the skill was last edited (`git log -1 --format=%cI <path>`, or the file's modified time with `stat -f %Sm -t %Y-%m-%dT%H:%M:%S <path>` outside a repo, such as under `~/.claude`).
 - Step 2 asks what's changed or missing, not what to capture from zero.
 - Step 4 edits the existing file in place. Preserve sections the user hasn't contradicted. Revise ones with new evidence. Add new sections only for genuinely new rules.
 
 ### 1. Mine their history
 
-Locate the active workspace's transcripts before fanning out. They are the `*.jsonl` files beside the current transcript, which `find ~/.claude/projects -maxdepth 2 -name "$CLAUDE_CODE_SESSION_ID.jsonl"` returns. Use only that directory. Don't glob across `~/.claude/projects/*/`. That crosses workspace boundaries and reads private chats from unrelated projects. Claude Code keeps transcripts for `cleanupPeriodDays` (default 30).
+Locate the active workspace's transcripts before fanning out. They are the `*.jsonl` files beside the current transcript, which `find ~/.claude/projects -maxdepth 2 -name "$CLAUDE_CODE_SESSION_ID.jsonl"` returns, plus those in the repo's worktree folders, named `<encoded-repo-path>--claude-worktrees-*`. Use only those directories. If they're still thin (a desktop session with no folder gets its own scratch folder, which holds about one transcript), ask the user which projects to mine. Don't glob across `~/.claude/projects/*/`. That crosses workspace boundaries and reads private chats from unrelated projects. Claude Code keeps transcripts for `cleanupPeriodDays` (default 30).
 
 Survey recent agent conversations within that scope for recurring patterns. Run multiple parallel subagents across slices of history (e.g. last 2-4 weeks, split into 3 slices so each has enough material). Each slice mining subagent reads transcripts from the workspace-scoped path the parent provides, looks for the signals below, and returns a short structured list of patterns it saw with evidence pointers. Default signals worth hunting:
 
@@ -80,7 +82,9 @@ Show the draft to the user and take feedback. Expect multiple iterations. Cut ru
 
 ### 6. Land it
 
-Work in a worktree off main. Commit and open a PR. Don't push to main directly.
+For a repo location, work in a worktree off main. Commit and open a PR. Don't push to main directly.
+
+For the personal location (`~/.claude/skills/`), write the files directly. It is not a git repo, so there is no worktree, commit, or PR.
 
 ## Guardrails
 

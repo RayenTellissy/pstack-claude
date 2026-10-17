@@ -22,7 +22,7 @@ Run:
 
 [`/setup-pstack`](../../../skills/setup-pstack/SKILL.md) asks for a reasoning budget, shows you each role (code delegates, judgment, the review panels) with its model and effort, and asks what you want. pstack runs on two models, `fable` and `opus`. Answer the questions. It writes `~/.claude/pstack/models.md`, a small model config that pstack skills read each time they pick a model.
 
-The defaults run at `xhigh` effort, the same as the `large` budget. `unlimited` lifts every role to `max`. `medium` and `small` lower the effort and spend fewer tokens.
+The defaults run at `xhigh` effort, except the code-writing roles at `high`. That is the `large` budget. `unlimited` lifts every role to `max`. `medium` and `small` lower the effort and spend fewer tokens.
 
 You only override what you care about. A role with no line in the model config keeps the skill's default. To restore a default, delete that role's line. A rerun of `/setup-pstack` keeps any role whose model differs from the default. When a default changes, a config written before the change still pins the old default, so delete those role lines, or delete the file, then run `/setup-pstack` again.
 

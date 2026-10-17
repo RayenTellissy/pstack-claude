@@ -96,7 +96,7 @@ A long chat accumulates context from the last task. When you change subjects, sa
 
 ## Give parallel work its own worktree
 
-If you run several agents against one repository on one computer, they will fight over the working tree, the ports, and the build output. Claude Code has no cloud subagents, so the isolation happens on your machine. A subagent spawned with `isolation: "worktree"` gets its own git worktree. To put a task in its own worktree, ask up front:
+If you run several agents against one repository on one computer, they will fight over the working tree, the ports, and the build output. pstack keeps subagents on your machine, so the isolation happens there. A subagent spawned with `isolation: "worktree"` gets its own git worktree. That worktree starts from the repository's default branch, not your current one, unless you set `worktree.baseRef` to `"head"` in Claude Code settings, so pstack briefs tell each worker which commit to check out. To put a task in its own worktree, ask up front:
 
 ```text
 /poteto-mode new task. branch off <base> in a fresh worktree, then port the parser change there.
