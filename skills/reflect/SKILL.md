@@ -30,15 +30,15 @@ Each reviewer and the synthesizer name a role line in `~/.claude/pstack/models.m
 
 | Lens | Role line | Default `model` | Default `effort` | Prompt template |
 |---|---|---|---|---|
-| Judgment | `reflect judgment, divergent, synthesizer` | `fable` | `high` | `references/judgment-reviewer.md` |
+| Judgment | `reflect judgment, divergent, synthesizer` | `opus` | `xhigh` | `references/judgment-reviewer.md` |
 | Tooling | `reflect tooling` | `opus` | `xhigh` | `references/tooling-reviewer.md` |
-| Divergent | `reflect judgment, divergent, synthesizer` | `fable` | `high` | `references/divergent-reviewer.md` |
+| Divergent | `reflect judgment, divergent, synthesizer` | `opus` | `xhigh` | `references/divergent-reviewer.md` |
 
 Pass each template verbatim, substituting the transcript path or digest where marked. Reviewers return findings in the Agent response body.
 
 ## 3. Synthesize
 
-One Agent call, `subagent_type: "general-purpose"`, `model` and `effort` from the `reflect judgment, divergent, synthesizer` line (default `fable high`). It spot-verifies citations through MCP, and `pstack-readonly` has no MCP tools. Pass `references/synthesizer.md` verbatim, with each reviewer's full output inlined where marked. It returns an Accepted / Rejected / Backlog list.
+One Agent call, `subagent_type: "general-purpose"`, `model` and `effort` from the `reflect judgment, divergent, synthesizer` line (default `opus xhigh`). It spot-verifies citations through MCP, and `pstack-readonly` has no MCP tools. Pass `references/synthesizer.md` verbatim, with each reviewer's full output inlined where marked. It returns an Accepted / Rejected / Backlog list.
 
 ## 4. Structural enforcement check
 

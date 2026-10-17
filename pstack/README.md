@@ -10,7 +10,7 @@ there's a growing sense that ai writes too much slop code. i agree. i don't want
 
 **pstack gives you fearless parallelism.** when you can go deep on one agent and trust it to write good, verifiable code, you can truly parallelize with confidence. start multiple agents up with `poteto-mode` and trust that they'll apply rigorous engineering principles to their work.
 
-**pstack runs on fable and opus.** fable takes judgment, prose, and the hardest changes. opus takes the code. the review panels run both on the same work, so a finding both models raise on their own deserves a closer look.
+**pstack runs on opus and fable.** opus takes the code, judgment, prose, and the hardest changes. the review panels run fable and opus on the same work, so a finding both models raise on their own deserves a closer look.
 
 fork it. improve it. make it yours. PRs are welcome! 
 
@@ -33,7 +33,7 @@ two steps:
 
 new here? the [pstack guide](./docs/guide/README.md) walks you through a first real task, from setup and prompting through verification and overnight runs. stuck, or unsure which skill fits? ask [`/poteto-help`](../skills/poteto-help/SKILL.md).
 
-that's it. the other skills are situational; the mode skill uses them for you as needed. out of the box the mode splits work by model strength. code delegates (feature, refactoring, bug fix, perf, hillclimb) go to opus, while the hardest changes, prose, and judgment go to fable. the default panel is fable / opus. [`/setup-pstack`](../skills/setup-pstack/SKILL.md) changes any of it.
+that's it. the other skills are situational; the mode skill uses them for you as needed. out of the box code delegates (feature, refactoring, bug fix, perf, hillclimb) run on opus at high effort, while the hardest changes, prose, and judgment run on opus at xhigh. the default panel is fable / opus. [`/setup-pstack`](../skills/setup-pstack/SKILL.md) changes any of it.
 
 ## usage
 

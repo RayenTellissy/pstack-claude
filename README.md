@@ -18,7 +18,7 @@ The poteto-mode scripts (`orch`, `watch-pr`) need [Node.js](https://nodejs.org) 
 
 ## What changed from upstream
 
-- Models. Fable takes judgment, prose, and the hardest changes. Opus takes the code, at `high` effort. Review panels run both. `/setup-pstack` writes `~/.claude/pstack/models.md`.
+- Models. Opus takes the code at `high` effort, and judgment, prose, and the hardest changes at `xhigh`. Review panels add Fable as a second voice. `/setup-pstack` writes `~/.claude/pstack/models.md`.
 - Subagents. `Task` becomes the Agent tool. Read-only reviewers use the bundled `pstack-readonly` agent. Cloud agents become subagents in their own git worktree.
 - Custom Mode becomes the `poteto-mode` output style.
 - Skills that use other pstack skills read them by path (`~/.claude/skills/<name>/SKILL.md`). Every pstack skill but `setup-pstack` sets `disable-model-invocation`, so the Skill tool refuses them.

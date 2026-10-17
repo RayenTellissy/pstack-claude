@@ -11,7 +11,7 @@ Write `~/.claude/pstack/models.md`, the model config that sets pstack's model an
 
 ### 1. Models
 
-pstack runs on two models, passed as the Agent tool's `model`: `fable` (strongest, the judgment default) and `opus` (the code default). The alias `inherit` is also valid. It means the role runs on the parent session's model and effort. Offer no other models.
+pstack runs on two models, passed as the Agent tool's `model`: `fable` (strongest, the second voice in review panels) and `opus` (the default for code and judgment). The alias `inherit` is also valid. It means the role runs on the parent session's model and effort. Offer no other models.
 
 ### 2. Load current state
 
@@ -47,14 +47,14 @@ feature, refactoring: opus high
 bug-fix: opus high
 perf-issue: opus high
 hillclimb: opus high
-judgment and prose: fable high
-hardest tasks: fable high
+judgment and prose: opus xhigh
+hardest tasks: opus xhigh
 how explorer: opus xhigh
-how explainer: fable high
+how explainer: opus xhigh
 why investigators: opus xhigh
-why synthesizer: fable high
+why synthesizer: opus xhigh
 reflect tooling: opus xhigh
-reflect judgment, divergent, synthesizer: fable high
+reflect judgment, divergent, synthesizer: opus xhigh
 arena runners: fable high, opus xhigh
 arena cross-judge pool: fable high, opus xhigh
 swarm workers: opus xhigh
