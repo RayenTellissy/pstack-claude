@@ -1,0 +1,54 @@
+name: Check upstream pstack
+
+on:
+  schedule:
+    - cron: "0 14 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Report upstream changes
+        id: report
+        run: |
+          set +e
+          node scripts/check-upstream.mjs --markdown > report.md
+          status=$?
+          set -e
+          if [ "$status" -gt 1 ]; then cat report.md; exit "$status"; fi
+          echo "pending=$status" >> "$GITHUB_OUTPUT"
+
+      - name: Open, update, or close the tracking issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OWNER: ${{ github.repository_owner }}
+          PENDING: ${{ steps.report.outputs.pending }}
+        run: |
+          gh label create upstream --color BFD4F2 --description "Upstream pstack changes to port" --force > /dev/null
+          number=$(gh issue list --label upstream --state open --json number --jq '.[0].number // empty')
+
+          if [ "$PENDING" = "0" ]; then
+            if [ -n "$number" ]; then
+              gh issue close "$number" --comment "$(cat report.md)"
+            fi
+            exit 0
+          fi
+
+          printf '\ncc @%s\n' "$OWNER" >> report.md
+          if [ -z "$number" ]; then
+            gh issue create --title "Port upstream pstack changes" --label upstream --body-file report.md
+          elif [ "$(gh issue view "$number" --json body --jq .body)" != "$(cat report.md)" ]; then
+            gh issue edit "$number" --body-file report.md
+            gh issue comment "$number" --body "Upstream has new pstack commits. The report above is updated. cc @$OWNER"
+          fi

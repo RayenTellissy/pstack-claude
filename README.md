@@ -27,6 +27,20 @@ The poteto-mode scripts (`orch`, `watch-pr`) need [Node.js](https://nodejs.org) 
 
 The first commit is the untouched upstream, so `git diff $(git rev-list --max-parents=0 HEAD) -M` shows the whole port.
 
+## Keeping up with upstream
+
+[`scripts/upstream.json`](scripts/upstream.json) records the last upstream commit ported. Every Monday, the [Check upstream pstack](.github/workflows/check-upstream.yml) workflow compares it with upstream. When upstream has moved, it opens an issue labeled `upstream` that lists the new commits and every added, changed, renamed, or deleted file, by its path in this repo. New commits update the issue, and the workflow closes it once you are caught up. Run it by hand from the Actions tab.
+
+To port by hand:
+
+```bash
+node scripts/check-upstream.mjs
+node scripts/check-upstream.mjs --diff skills/swarm/SKILL.md
+node scripts/check-upstream.mjs --done <commit>
+```
+
+The first prints the same report, and exits 1 while there is something to port. The second prints one file's upstream diff, or all of them without a path. After you port the changes, the third records the commit the report named. Commit `scripts/upstream.json` with the port.
+
 ## License
 
 [MIT](LICENSE), copyright Lauren Tan.

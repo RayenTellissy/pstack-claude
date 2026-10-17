@@ -1,0 +1,7 @@
+{
+  "repository": "https://github.com/cursor/plugins",
+  "branch": "main",
+  "directory": "pstack",
+  "commit": "c86f349b102feb91f1966f8a6a60882a4e601b50",
+  "version": "0.15.23"
+}
