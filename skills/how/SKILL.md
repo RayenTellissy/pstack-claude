@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 Explore the codebase to answer "how does X work?" questions. Produce architectural explanations at the level of a senior engineer onboarding onto a subsystem, enough to build a working mental model, not so much that it reads like annotated source code.
 
-Every spawn is an Agent subagent with `subagent_type: "pstack-readonly"`. Explorers use the `how explorer` line in `~/.claude/pstack/models.md` (default `opus xhigh`), and every explainer uses the `how explainer` line (default `opus xhigh`). Pass that line's model and effort as the Agent call's `model` and `effort`, or the default if the file or the line is missing. Omit both when the value is `inherit`. If the line names a model other than `fable` or `opus`, use the default and say so. Pick each subagent's effort for the job, per the Subagents section of the **poteto-mode** skill.
+Every spawn is an Agent subagent with `subagent_type: "pstack-readonly"`. Explorers use the `how explorer` line in `~/.claude/pstack/models.md` (default `opus medium`), and every explainer uses the `how explainer` line (default `opus xhigh`). Pass that line's model and effort as the Agent call's `model` and `effort`, or the default if the file or the line is missing. Omit both when the value is `inherit`. If the line names a model other than `fable` or `opus`, use the default and say so. Pick each subagent's effort for the job, per the Subagents section of the **poteto-mode** skill.
 
 ## 1. Assess complexity
 

@@ -94,7 +94,7 @@ Read the leaf skill in full for any principle you apply. Each entry names when i
 
 Subagents can spawn their own subagents, up to three layers below the main session. A delegate that finds itself without the Agent tool runs the routed skill's steps itself, in sequence, and says so in its report.
 
-**Match the effort to the job.** Before each spawn, start from the role's line or default and pick the `effort` the job needs. The `/setup-pstack` budget sets each role's starting effort. Raise it one step, up to `max`, for the hardest or subtlest work. Lower it one step for judgment and two or more steps for routine work, down to `low`. Verification is the exception and stays on the `swarm workers` line (`opus xhigh` by default). Change only `effort`, and keep the model the role names, so a diverse panel stays diverse. A role on `inherit` stays on the parent session's model and effort.
+**Match the effort to the job.** Before each spawn, start from the role's line or default and pick the `effort` the job needs. The `/setup-pstack` budget sets each role's starting effort. Raise it one step, up to `max`, for the hardest or subtlest work. Lower it one step for judgment and two or more steps for routine work, down to `low`. Verification is the exception and stays on the `swarm workers` line (`opus high` by default). Change only `effort`, and keep the model the role names, so a diverse panel stays diverse. A role on `inherit` stays on the parent session's model and effort.
 
 You own every subagent's work. Review the diff and write your own summary, don't pass through what it said. A second opinion is the same prompt against a different model. Agreement is high-signal.
 

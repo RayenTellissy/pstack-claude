@@ -26,7 +26,7 @@ The default role-to-model mapping is the file shape shown in step 5 below. If `~
 - `medium (high effort)`
 - `small (medium effort)`
 
-**(b) Apply it.** Build the working table from the skill defaults, and on a re-run keep any role you changed by model, list, or alias (`inherit`). `unlimited`, `medium`, and `small` set the effort of every entry, panel entries included, to `max`, `high`, or `medium`. `inherit` does not change. So `unlimited` turns `fable high` into `fable max`. `large` keeps the defaults: every `fable` entry and the code-writing roles (feature, refactoring, bug-fix, perf-issue, hillclimb) at `high`, and the other `opus` entries at `xhigh`. `small` turns them into `fable medium` and `opus medium`.
+**(b) Apply it.** Build the working table from the skill defaults, and on a re-run keep any role you changed by model, list, or alias (`inherit`). `unlimited`, `medium`, and `small` set the effort of every entry, panel entries included, to `max`, `high`, or `medium`. `inherit` does not change. So `unlimited` turns `fable high` into `fable max`. `large` keeps the defaults: every `fable` entry, the code-writing roles (feature, refactoring, bug-fix, perf-issue, hillclimb), `reflect tooling`, and `swarm workers` at `high`, `how explorer` at `medium`, and the other `opus` entries at `xhigh`. `small` turns them into `fable medium` and `opus medium`.
 
 **(c) Show the roles and confirm.** Show every role with its model and effort. Also list each line step 2 dropped. Ask whether to accept as-is or change specific roles, offering `fable`, `opus`, and `inherit` as the options. Use `AskUserQuestion`. For panel roles (arena runners, architect runners, interrogate reviewers) the value is a list, and one subagent runs per entry, `inherit` entries included, so the list length sets the count. `arena cross-judge pool` is also a list, but Arena selects one value from it whose model differs from the parent's when possible. `swarm workers` is the default model for every worker unless a race or comparison assigns another model per arm.
 
@@ -49,15 +49,15 @@ perf-issue: opus high
 hillclimb: opus high
 judgment and prose: opus xhigh
 hardest tasks: opus xhigh
-how explorer: opus xhigh
+how explorer: opus medium
 how explainer: opus xhigh
 why investigators: opus xhigh
 why synthesizer: opus xhigh
-reflect tooling: opus xhigh
+reflect tooling: opus high
 reflect judgment, divergent, synthesizer: opus xhigh
 arena runners: fable high, opus xhigh
 arena cross-judge pool: fable high, opus xhigh
-swarm workers: opus xhigh
+swarm workers: opus high
 architect runners: fable high, opus xhigh
 interrogate reviewers: fable high, opus xhigh
 ```
