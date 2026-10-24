@@ -35,7 +35,7 @@ When the model config is missing and it matters, ask whether the user wants to p
 
 ## Get set up
 
-1. Install by copying `skills/`, `agents/`, and `output-styles/` into `~/.claude/`, and `pstack/` to `~/.claude/pstack/`. Restart Claude Code so it loads the new agents and the output style.
+1. Install with `curl -fsSL https://raw.githubusercontent.com/RayenTellissy/pstack-claude/main/install.sh | sh`. The same command updates pstack later. Restart Claude Code so it loads the new agents and the output style.
 2. Run [`/setup-pstack`](../setup-pstack/SKILL.md). It asks for a reasoning budget, maps a model to each role, and writes `~/.claude/pstack/models.md`. Skills read that file when they pick a model, so it applies from the next task. Then it offers once each to generate a verification skill and a formal verification skill for the project, unless the project already has one.
 3. Start a real task with `/poteto-mode`, a goal, and a check that can pass or fail.
 

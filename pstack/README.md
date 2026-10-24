@@ -16,11 +16,11 @@ fork it. improve it. make it yours. PRs are welcome!
 
 ## install
 
-the top-level directories of this repo mirror `~/.claude/`. from the repo root, copy them in:
-
 ```bash
-cp -R skills agents output-styles pstack ~/.claude/
+curl -fsSL https://raw.githubusercontent.com/RayenTellissy/pstack-claude/main/install.sh | sh
 ```
+
+it copies `skills`, `agents`, `output-styles`, and `pstack` from `main` into `~/.claude/`. run it again to update. it keeps your model config, but it overwrites edits you made to the installed pstack skills.
 
 then start a new Claude Code session so it loads the skills, agents, and output style. the poteto-mode scripts (`orch`, `watch-pr`) and the [`/statechart`](../skills/statechart/SKILL.md) scripts need Node.js 22.18 or later. `/statechart` also installs TLC and Java with [mise](https://mise.jdx.dev) on its first run. nothing else needs them.
 

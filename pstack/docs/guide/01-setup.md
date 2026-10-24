@@ -4,11 +4,13 @@ In this page you install pstack, pick which models pstack uses, and run your fir
 
 ## Install pstack
 
-The repository's top-level directories mirror `~/.claude/`. From the repository root, run:
+Run:
 
 ```bash
-cp -R skills agents output-styles pstack ~/.claude/
+curl -fsSL https://raw.githubusercontent.com/RayenTellissy/pstack-claude/main/install.sh | sh
 ```
+
+The script copies `skills`, `agents`, `output-styles`, and `pstack` from the repository's `main` branch into `~/.claude/`. To update later, run the same command. It keeps your model config, but it overwrites edits you made to the installed pstack skills.
 
 Then start a new Claude Code session, so it loads the new skills, agents, and output style. The poteto-mode scripts (`orch`, `watch-pr`) and the `/statechart` scripts need Node.js 22.18 or later. `/statechart` also installs TLC and Java with [mise](https://mise.jdx.dev) on its first run. Nothing else needs them.
 

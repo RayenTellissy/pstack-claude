@@ -6,11 +6,11 @@ The full README is [`pstack/README.md`](pstack/README.md). The walkthrough is th
 
 ## Install
 
-The top-level directories mirror `~/.claude/`. From the repo root, copy them in:
-
 ```bash
-cp -R skills agents output-styles pstack ~/.claude/
+curl -fsSL https://raw.githubusercontent.com/RayenTellissy/pstack-claude/main/install.sh | sh
 ```
+
+The script downloads `main` and copies `skills`, `agents`, `output-styles`, and `pstack` into `~/.claude/`. Run the same command again to update. It keeps your model config and your own skills, but it overwrites any edits you made to the installed pstack skills. From a clone, `cp -R skills agents output-styles pstack ~/.claude/` does the same.
 
 Start a new Claude Code session, then run `/setup-pstack` to pick a reasoning budget, or skip it to keep the defaults. Use `/poteto-mode` at the start of any task that needs rigor. To keep it on every turn, run `/output-style poteto-mode`.
 
