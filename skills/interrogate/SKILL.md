@@ -35,7 +35,7 @@ Each reviewer gets `subagent_type: "pstack-readonly"`, and `model` and `effort` 
 
 If an entry names a model other than `fable`, `opus`, or `inherit`, run that reviewer on its table default, or Reviewer A's default when the table has no row for it, and say so. Do not block the review on it.
 
-Read `references/reviewer-prompt.md` and fill in the same template for every reviewer with the stated intent, the diff or file contents, the rubric from `references/rubric.md`, and the code-quality lens from `references/code-quality-review.md`.
+Read `references/reviewer-prompt.md` and fill in the same template for every reviewer with the stated intent, the diff or file contents, the rubric from `references/rubric.md`, and the code-quality lens from `references/code-quality-review.md`. Pick each subagent's effort for the job, per the Subagents section of the **poteto-mode** skill.
 
 ## Step 4, Synthesize
 

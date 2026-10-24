@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 Investigate the motivation and intent behind code. The companion `how` skill answers what the code does and how it works. `why` answers what forces led to its shape.
 
-Each spawn below names a role line in `~/.claude/pstack/models.md` and a default. Pass that line's model and effort as the Agent call's `model` and `effort`, or the default if the file or the line is missing. Omit both when the value is `inherit`. If the line names a model other than `fable` or `opus`, use the default and say so.
+Each spawn below names a role line in `~/.claude/pstack/models.md` and a default. Pass that line's model and effort as the Agent call's `model` and `effort`, or the default if the file or the line is missing. Omit both when the value is `inherit`. If the line names a model other than `fable` or `opus`, use the default and say so. Pick each subagent's effort for the job, per the Subagents section of the **poteto-mode** skill.
 
 Every spawn is `subagent_type: "general-purpose"`. **Do not use `pstack-readonly`.** It has no MCP tools, which disables the MCP-backed investigators and the synthesizer's citation spot-checks. Investigators still shouldn't write anything.
 
