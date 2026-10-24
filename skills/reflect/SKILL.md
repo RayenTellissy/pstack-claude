@@ -26,7 +26,7 @@ This session's subagent transcripts sit beside it at `<project>/<session-id>/sub
 
 One message, three Agent calls, `subagent_type: "general-purpose"`. Reviewers need MCP access to look up the tickets, chat threads, and observability traces the transcript references, and `pstack-readonly` has no MCP tools.
 
-Each reviewer and the synthesizer name a role line in `~/.claude/pstack/models.md` and a default. Pass that line's model and effort as the Agent call's `model` and `effort`, or the default if the file or the line is missing. Omit both when the value is `inherit`. If the line names a model other than `fable` or `opus`, use the default and say so.
+Each reviewer and the synthesizer name a role line in `~/.claude/pstack/models.md` and a default. Pass that line's model and effort as the Agent call's `model` and `effort`, or the default if the file or the line is missing. Omit both when the value is `inherit`. If the line names a model other than `fable` or `opus`, use the default and say so. Pick each subagent's effort for the job, per the Subagents section of the **poteto-mode** skill.
 
 | Lens | Role line | Default `model` | Default `effort` | Prompt template |
 |---|---|---|---|---|
@@ -49,6 +49,8 @@ Move any Accepted item that a lint rule, script, metadata flag, or runtime check
 Present the synthesizer's full Accepted / Rejected / Backlog output and wait for explicit approval before applying any Accepted edit. The user picks the subset and may redirect routings. Skill changes affect every future agent in the org. Do not auto-apply.
 
 List each Backlog item in the summary, or in a local file, without waiting. File Backlog items to an issue tracker only if the user names one or approves it.
+
+Never edit a skill under `~/.claude/plugins/cache/`. Before approval, show its destination, `.claude/skills/<skill>/` or `~/.claude/skills/<skill>/`. After approval, copy the skill folder there and edit the copy. Never open a PR or push.
 
 Follow each approved row's Routing exactly:
 
